@@ -31,7 +31,7 @@ const DeleteModal = ({
     if (onConfirm) onConfirm();
     onClose();
   } catch (error) {
-    console.error("Error deleting entry:", error.response?.data || error.message);
+    console.error("Error deleting entry:", error);
   }
 };
 
