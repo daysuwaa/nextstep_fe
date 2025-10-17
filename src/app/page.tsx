@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Sparkles, Heart, TrendingUp, Zap } from 'lucide-react';
@@ -8,7 +9,7 @@ export default function AbiDiaryLanding() {
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e:any) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 

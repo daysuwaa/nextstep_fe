@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import InputComponent from '@/app/component/InputComponent'
 import Link from 'next/link';
