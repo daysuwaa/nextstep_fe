@@ -132,7 +132,7 @@ export default function AbiDiaryLanding() {
             >
               <feature.icon className="w-12 h-12 text-pink-400 mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300" />
               <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
-              <p className="text-gray-300">{feature.desc}</p>
+              <p className="text-gray-500">{feature.desc}</p>
             </div>
           ))}
         </div>
@@ -144,7 +144,7 @@ export default function AbiDiaryLanding() {
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
             Ready to Start Your Journey?
           </h2>
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-xl text-gray-500 mb-8">
             Join our community of storytellers today
           </p>
           <a 
