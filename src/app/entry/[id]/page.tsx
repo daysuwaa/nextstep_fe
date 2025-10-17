@@ -29,7 +29,7 @@ const EntryPage = ({ params }: EntryPageProps) => {
       try {
         const token = localStorage.getItem("token"); // assuming JWT stored here
         const res = await axios.get(
-          `http://localhost:5068/entries/${params.id}`,
+          `https://nextstep-be.onrender.com/entries/${params.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -26,7 +26,7 @@ const DeleteModal = ({
   const handleDeleteEntry = async (entryId: string | number | undefined) => {
   console.log("Deleting entry with ID:", entryId);
   try {
-    const response = await axios.delete(`http://localhost:5068/api/v1/entries/${entryId}`);
+    const response = await axios.delete(`https://nextstep-be.onrender.com/api/v1/entries/${entryId}`);
     console.log(response.data.message);
     if (onConfirm) onConfirm();
     onClose();

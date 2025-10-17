@@ -18,7 +18,7 @@ const NewEntry = () => {
 const uploadToCloudinary = async (file: File) => {
   try {
     // 1️Ask backend for a signed upload signature
-    const sigRes = await axios.get("http://localhost:5068/api/v1/cloudinary-signature");
+    const sigRes = await axios.get("https://nextstep-be.onrender.com/api/v1/cloudinary-signature");
     const { signature, timestamp, apiKey, cloudName } = sigRes.data;
 
     // Prepare the upload form data
@@ -72,7 +72,7 @@ const uploadToCloudinary = async (file: File) => {
       };
 
       const response = await axios.post(
-        `http://localhost:5068/api/v1/${userId}/entries`,
+        `https://nextstep-be.onrender.com/api/v1/${userId}/entries`,
         payload,
         {
           headers: {

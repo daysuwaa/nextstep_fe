@@ -37,7 +37,7 @@ const Dashboard = () => {
       }
       // get all entries
       try {
-        const response = await axios.get("http://localhost:5068/api/v1/entries", {
+        const response = await axios.get("https://nextstep-be.onrender.com/api/v1/entries", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

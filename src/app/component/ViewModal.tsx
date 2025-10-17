@@ -31,7 +31,7 @@ const ViewModal = ({ isOpen, onClose, entryId }: ViewModalProps) => {
         setLoading(true);
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          `http://localhost:5068/api/v1/entries/${entryId}`,
+          `https://nextstep-be.onrender.com/api/v1/entries/${entryId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

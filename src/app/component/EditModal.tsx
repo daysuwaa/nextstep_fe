@@ -31,7 +31,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onSave, entry })
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = axios.patch(`http://localhost:5068/api/v1/entries/${entry.id}`, {
+      const response = axios.patch(`https://nextstep-be.onrender.com/api/v1/entries/${entry.id}`, {
         title,
         mood,
         content,
