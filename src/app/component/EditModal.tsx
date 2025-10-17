@@ -1,7 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { JournalEntry } from "../data/dummyPost";
 import axios from "axios";
+
+type JournalEntry = {
+  id: string;
+  title: string;
+  mood: string;
+  content: string;
+  excerpt: string;
+};
 
 type EditModalProps = {
   isOpen: boolean;
@@ -16,7 +23,6 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onSave, entry })
   const [content, setContent] = useState("");
   const [excerpt, setExcerpt] = useState("");
 
-  // preload entry data into form when modal opens
   useEffect(() => {
     if (entry) {
       setTitle(entry.title);
@@ -28,52 +34,44 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onSave, entry })
 
   if (!isOpen || !entry) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = axios.patch(`https://nextstep-be.onrender.com/api/v1/entries/${entry.id}`, {
+      // ✅ await the request
+      const response = await axios.patch(
+        `https://nextstep-be.onrender.com/api/v1/entries/${entry.id}`,
+        { title, mood, content, excerpt }
+      );
+      console.log("Response:", response.data);
+
+      // ✅ update parent state
+      onSave({
+        ...entry,
         title,
         mood,
         content,
-        excerpt
+        excerpt,
       });
-      console.log('Response:', response);
 
+      onClose();
+    } catch (error) {
+      console.error("Error updating entry:", error);
     }
-    catch(error){
-    console.error(error);
-    }
-    onSave({
-      ...entry,
-      title,
-      mood,
-      content,
-      excerpt
-    });
-    onClose();
   };
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
       <div className="bg-white rounded-xl shadow-xl max-w-lg w-full p-6">
-        {/* Header */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold text-gray-900">Edit Entry</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
-          >
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
             ✕
           </button>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Title
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
             <input
               type="text"
               value={title}
@@ -81,10 +79,9 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onSave, entry })
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500"
             />
           </div>
+
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Excerpt
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Excerpt</label>
             <input
               type="text"
               value={excerpt}
@@ -93,11 +90,8 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onSave, entry })
             />
           </div>
 
-          {/* Mood */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Mood
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Mood</label>
             <select
               value={mood}
               onChange={(e) => setMood(e.target.value)}
@@ -113,12 +107,8 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onSave, entry })
             </select>
           </div>
 
-
-          {/* Content */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Content
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Content</label>
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
@@ -127,7 +117,6 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose, onSave, entry })
             />
           </div>
 
-          {/* Actions */}
           <div className="flex justify-end space-x-3 pt-2">
             <button
               type="button"

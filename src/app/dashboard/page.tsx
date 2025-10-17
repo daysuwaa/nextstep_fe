@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useEffect, useState } from "react";
 import JournalCardComponent from "./BlogCardComponent";
@@ -14,6 +15,7 @@ type Entry = {
   mood: string;
   excerpt: string;
   imageUrl?: string;
+  content:string;
 };
 
 const Dashboard = () => {
@@ -122,7 +124,7 @@ const Dashboard = () => {
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
         onSave={handleSaveEdit}
-        entry={selectedEntry}
+        entry={selectedEntry }
       />
 
       <DeleteModal

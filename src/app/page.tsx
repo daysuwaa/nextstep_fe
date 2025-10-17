@@ -27,11 +27,6 @@ export default function AbiDiaryLanding() {
     { icon: Sparkles, title: 'Express', desc: 'Your authentic self' },
   ];
 
-  const stats = [
-    { number: '10K+', label: 'Active Writers' },
-    { number: '50K+', label: 'Stories Shared' },
-    { number: '100K+', label: 'Readers' },
-  ];
 
   return (
     <div className="min-h-screen  text-black overflow-hidden">
@@ -120,44 +115,7 @@ export default function AbiDiaryLanding() {
             </a>
           </div>
         </div>
-
-        {/* Floating Cards Preview */}
-        {/* <div className="mt-20 relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="group p-6 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
-                style={{
-                  animation: `float ${3 + i}s ease-in-out infinite`,
-                  animationDelay: `${i * 0.2}s`
-                }}
-              >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-blue-500 mb-4 group-hover:rotate-12 transition-transform duration-300" />
-                <div className="h-4 bg-white/20 rounded mb-2 w-3/4" />
-                <div className="h-3 bg-white/10 rounded w-full" />
-              </div>
-            ))}
-          </div>
-        </div> */}
       </div>
-
-      {/* Stats Section */}
-      {/* <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {stats.map((stat, i) => (
-            <div 
-              key={i}
-              className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105"
-            >
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent mb-2">
-                {stat.number}
-              </div>
-              <div className="text-gray-300 text-lg">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </div> */}
 
       {/* Features Section */}
       <div id="features" className="relative z-10 mt-[7rem] max-w-6xl mx-auto px-6 md:px-12 py-20">

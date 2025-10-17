@@ -8,6 +8,7 @@ type Entry = {
   mood: string;
   excerpt: string;
   imageUrl?: string;
+  content:string
 };
 
 const JournalCardComponent = ({
