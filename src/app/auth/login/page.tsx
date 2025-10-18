@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import InputComponent from "@/app/component/InputComponent";
+import InputComponent from "../../components/Input";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -10,22 +10,24 @@ import axios from "axios";
 const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // ✅ loading state
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true); // start loading
 
     try {
-      const response = await axios.post("https://nextstep-be.onrender.com/api/v1/login", {
+      const response = await axios.post(
+        "https://nextstep-be.onrender.com/api/v1/login", 
+        // "http://localhost:5068/api/v1/login",
+        {
         email,
         password,
       });
 
       const { token, userId } = response.data.data;
 
-      console.log("Login Response:", response.data);
-
-      // Save token and userId to local storage
       localStorage.setItem("token", token);
       localStorage.setItem("userId", userId);
 
@@ -36,6 +38,8 @@ const Page = () => {
       toast.error(
         error.response?.data?.message || "Login failed. Please try again."
       );
+    } finally {
+      setIsLoading(false); 
     }
   };
 
@@ -67,11 +71,24 @@ const Page = () => {
 
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+            disabled={isLoading} 
+            className={`w-full py-2 px-4 text-white font-medium rounded-md transition-colors ${
+              isLoading
+                ? "bg-blue-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
+            }`}
           >
-            Submit
+            {isLoading ? (
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>loging in...</span>
+              </div>
+            ) : (
+              "Submit"
+            )}
           </button>
-          <p>
+
+          <p className="text-center">
             Don’t have an account?{" "}
             <Link href="/auth/register" className="text-blue-700">
               Register

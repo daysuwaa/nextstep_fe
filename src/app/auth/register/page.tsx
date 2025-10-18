@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
-import InputComponent from '@/app/component/InputComponent'
+import InputComponent from '@/app/dashboard/component/InputComponent'
 import Link from 'next/link';
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
@@ -12,7 +12,7 @@ const Page = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+ const [isLoading, setIsLoading] = useState(false); // ✅ loading state
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -31,6 +31,9 @@ const Page = () => {
       toast.error(
         error.response?.data?.message || 'Registration failed. Please try again.'
       );
+    }
+    finally {
+      setIsLoading(false);
     }
   }
   const router = useRouter();
@@ -68,11 +71,23 @@ const Page = () => {
             type='password' 
           />
           
-          <button 
-            type='submit'
-            className='w-full py-2 px-4 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors'
+         <button
+            type="submit"
+            disabled={isLoading} 
+            className={`w-full py-2 px-4 text-white font-medium rounded-md transition-colors ${
+              isLoading
+                ? "bg-blue-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
+            }`}
           >
-            Submit
+            {isLoading ? (
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>loging in...</span>
+              </div>
+            ) : (
+              "Submit"
+            )}
           </button>
           <p> have an acount?<Link href='/auth/login' className='text-blue-700'>Log in</Link></p>
         </form>

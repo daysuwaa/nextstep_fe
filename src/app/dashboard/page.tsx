@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useEffect, useState } from "react";
-import JournalCardComponent from "./BlogCardComponent";
-import EditModal from "../component/EditModal";
-import DeleteModal from "../component/DeleteModal";
-import ViewModal from "../component/ViewModal";
-import Header from "../component/Header";
+import JournalCardComponent from "./component/BlogCard";
+import EditModal from "../components/Modal/EditModal";
+import DeleteModal from "../components/Modal/DeleteModal";
+import ViewModal from "../components/Modal/ViewModal";
+import Header from "../components/Header";
 import toast from "react-hot-toast";
 import axios from "axios";
 
