@@ -32,12 +32,12 @@ const Home = () => {
         </div>
 
         {/* Main heading */}
-        <h1 className='text-5xl sm:text-6xl mb-[-3rem] lg:text-7xl text-[#527967] font-bold leading-tight animate-fade-in-up'>
-          Capture moments.
+        <h1 className='text-5xl sm:text-6xl  lg:text-7xl text-[#527967] font-bold leading-tight mb-6 animate-fade-in-up'>
+          Capture moments. Reflect. Grow.
           <br />
-          <span className='bg-gradient-to-r from-sage-600 to-sage-800 bg-clip-text text-transparent'>
+          {/* <span className='bg-gradient-to-r from-sage-600 to-sage-800 bg-clip-text text-transparent'>
             Reflect. Grow.
-          </span>
+          </span> */}
         </h1>
 
         {/* Description */}
