@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
-import InputComponent from '@/app/dashboard/component/InputComponent'
+import InputComponent from '../../components/Input'
 import Link from 'next/link';
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
